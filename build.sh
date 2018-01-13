@@ -1,0 +1,1 @@
+docker build -t zteste1 --squash --compress --force-rm -f Dockerfile .

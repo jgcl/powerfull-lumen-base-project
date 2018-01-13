@@ -1,0 +1,236 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "PHP 7.1 Lumen API Database Swagger",
+        "description": "This swagger aims to place calls on the endpoints. All databases have the same table, with the same column specifications. In each call you can opt for a different database, choosing between mysql, oracle, postgresql, mongo, sql server, sqlite.",
+        "contact": "Jo\u00e3o Gabriel C. Laass - gabriel@orangepixel.com.br",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/select": {
+            "get": {
+                "tags": [
+                    "database"
+                ],
+                "summary": "Select Example",
+                "description": "Select Example",
+                "operationId": "select",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "database",
+                        "in": "query",
+                        "description": "database",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "mysql",
+                            "sqlsrv",
+                            "oracle",
+                            "pgsql",
+                            "sqlite",
+                            "mongo"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Json Content Data"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/insert": {
+            "post": {
+                "tags": [
+                    "database"
+                ],
+                "summary": "Select Example",
+                "description": "Simple insert example",
+                "operationId": "select",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "database",
+                        "in": "query",
+                        "description": "database",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "mysql",
+                            "sqlsrv",
+                            "oracle",
+                            "pgsql",
+                            "sqlite",
+                            "mongo"
+                        ]
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nasc",
+                        "in": "query",
+                        "description": "date of birth in YYYY-MM-DD",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Json Content Data"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/update": {
+            "put": {
+                "tags": [
+                    "database"
+                ],
+                "summary": "Update Example",
+                "description": "Simple Update Example",
+                "operationId": "update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "database",
+                        "in": "query",
+                        "description": "database",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "mysql",
+                            "sqlsrv",
+                            "oracle",
+                            "pgsql",
+                            "sqlite",
+                            "mongo"
+                        ]
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "register id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nasc",
+                        "in": "query",
+                        "description": "date of birth in YYYY-MM-DD",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Json Content Data"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/delete": {
+            "delete": {
+                "tags": [
+                    "database"
+                ],
+                "summary": "Delete Example",
+                "description": "Simple Delete Example",
+                "operationId": "update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "database",
+                        "in": "query",
+                        "description": "database",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "mysql",
+                            "sqlsrv",
+                            "oracle",
+                            "pgsql",
+                            "sqlite",
+                            "mongo"
+                        ]
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "register id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Json Content Data"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "tags": [
+                    "debug"
+                ],
+                "summary": "Health Check",
+                "description": "Health Check, return simple 'ok'",
+                "operationId": "test",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Health Data"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
