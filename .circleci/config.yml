@@ -18,6 +18,8 @@ jobs:
           name: Docker send image to hub
           command: |
             TAG="0.1.${CIRCLE_BUILD_NUM}"
-            docker build jgcl88/php71databases:$TAG .
+            docker build -t jgcl88/php71databases:$TAG .
             docker images
             docker push jgcl88/php71databases:$TAG
+            docker tag jgcl88/php71databases:$TAG jgcl88/php71databases:latest
+            docker push jgcl88/php71databases:latest
