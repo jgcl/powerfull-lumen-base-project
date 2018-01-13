@@ -1,1 +1,1 @@
-docker build -t zteste1 --squash --compress --force-rm -f Dockerfile .
+docker build -t jgcl88/php71databases --squash --compress --force-rm -f Dockerfile .

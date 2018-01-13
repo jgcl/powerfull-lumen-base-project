@@ -42,9 +42,9 @@ services:
       - "1521:1521"
     network_mode: "bridge"
 
-  zteste:
-    container_name: zteste
-    image: zteste1
+  lumenapp:
+    container_name: lumenapp
+    image: jgcl88/php71databases
     command: ["sh", "-c", "/docker/start.sh"]
     links:
       - sqlsrv
