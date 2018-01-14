@@ -44,8 +44,8 @@ services:
 
   lumenapp:
     container_name: lumenapp
-    image: jgcl88/php71databases
-    command: ["sh", "-c", "/docker/start.sh"]
+    image: jgcl88/alpine-nginx-php:latest
+    command: ["sh", "-c", "composer install && /docker/start.sh"]
     links:
       - sqlsrv
       - mysql

@@ -1,1 +1,0 @@
-docker build -t jgcl88/php71databases .
