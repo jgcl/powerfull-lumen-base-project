@@ -11,13 +11,13 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=test
       - MYSQL_USER=test
-      - MYSQL_PASSWORD=test1234
+      - MYSQL_PASSWORD=TestPassWord1234
     ports:
       - "3306:3306"
     network_mode: "bridge"
 
-  sqlsrv:
-    container_name: sqlsrv
+  sqlserver:
+    container_name: sqlserver
     image: microsoft/mssql-server-linux:latest
     environment:
       - ACCEPT_EULA=Y
@@ -30,8 +30,8 @@ services:
       - "1433:1433"
     network_mode: "bridge"
 
-  oraclesrv:
-    container_name: oraclesrv
+  oracle:
+    container_name: oracle
     image: wnameless/oracle-xe-11g
     environment:
       - ORACLE_ALLOW_REMOTE=true
@@ -42,14 +42,34 @@ services:
       - "1521:1521"
     network_mode: "bridge"
 
+  postgresql:
+    container_name: postgresql
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=TestPassWord1234
+      - POSTGRES_DB=test
+    ports:
+      - "5432:5432"
+    network_mode: "bridge"
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    network_mode: "bridge"
+
   lumenapp:
     container_name: lumenapp
     image: jgcl88/alpine-nginx-php:latest
-    command: ["sh", "-c", "composer install && /docker/start.sh"]
+    command: ["sh", "-c", "composer install && php artisan migrate && /docker/start.sh"]
     links:
-      - sqlsrv
       - mysql
-      - oraclesrv
+      - sqlserver
+      - oracle
+      - postgresql
+      - mongo
     volumes:
       - ./application:/app
     ports:

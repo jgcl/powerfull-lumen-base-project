@@ -19,9 +19,11 @@ This project uses "jgcl88/alpine-nginx-php:latest" availble in:
 docker-compose up -d
 ```
 
-## Todo
+## Next steps
 
-todo
+- Include Beanstealk container; 
+- Include Beanstealk web console container; 
+- Include Redis container; 
 
 ## License
 

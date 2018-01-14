@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MysqlTestModel;
+use App\Services\ServiceModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseController extends Controller
 {
@@ -12,6 +11,7 @@ class DatabaseController extends Controller
      * Select Example
      *
      * @return mixed
+     * @throws \Exception
      *
      * @SWG\Get(
      *     path="/select",
@@ -27,16 +27,16 @@ class DatabaseController extends Controller
      *     @SWG\Response(response=500, description="Internal Server Error")
      * )
      */
-    public function select(Request $request)
+    public function select(Request $request, ServiceModel $serviceModel)
     {
         // simple validation
         $this->validate($request, [
             'database' => 'required|string|in:mysql,sqlsrv,oracle,pgsql,sqlite,mongo'
         ]);
 
-        $database = $request->input('database');
+        $model = $serviceModel->getModel($request);
 
-        $response = MysqlTestModel::all();
+        $response = $model->all();
 
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
     }
@@ -62,7 +62,7 @@ class DatabaseController extends Controller
      *     @SWG\Response(response=500, description="Internal Server Error")
      * )
      */
-    public function insert(Request $request)
+    public function insert(Request $request, ServiceModel $serviceModel)
     {
         // simple validation
         $this->validate($request, [
@@ -71,9 +71,9 @@ class DatabaseController extends Controller
             'nasc' => 'required|date_format:Y-m-d',
         ]);
 
-        $database = $request->input('database');
+        $model = $serviceModel->getModel($request);
 
-        $response = MysqlTestModel::create($request->only(['name', 'nasc']));
+        $response = $model->create($request->only(['name', 'nasc']));
 
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
     }
@@ -100,7 +100,7 @@ class DatabaseController extends Controller
      *     @SWG\Response(response=500, description="Internal Server Error")
      * )
      */
-    public function update(Request $request)
+    public function update(Request $request, ServiceModel $serviceModel)
     {
         // simple validation
         $this->validate($request, [
@@ -110,9 +110,8 @@ class DatabaseController extends Controller
             'nasc' => 'required|date_format:Y-m-d',
         ]);
 
-        $database = $request->input('database');
-
-        $model = MysqlTestModel::findOrFail($request->input('id'));
+        $model = $serviceModel->getModel($request);
+        $model = $model->findOrFail($request->input('id'));
         $model->fill($request->only(['name','nasc']))->save();
 
         return response()->json($model, 200, [], JSON_PRETTY_PRINT);
@@ -138,7 +137,7 @@ class DatabaseController extends Controller
      *     @SWG\Response(response=500, description="Internal Server Error")
      * )
      */
-    public function delete(Request $request)
+    public function delete(Request $request, ServiceModel $serviceModel)
     {
         // simple validation
         $this->validate($request, [
@@ -146,9 +145,8 @@ class DatabaseController extends Controller
             'id' => 'required|string|exists:tests,id',
         ]);
 
-        $database = $request->input('database');
-
-        $model = MysqlTestModel::findOrFail($request->input('id'))->delete();
+        $model = $serviceModel->getModel($request);
+        $model = $model->findOrFail($request->input('id'))->delete();
 
         return response()->json($model, 200, [], JSON_PRETTY_PRINT);
     }

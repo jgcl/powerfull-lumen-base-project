@@ -47,39 +47,39 @@ return [
     'connections' => [
         'sqlite' => [
             'driver'   => 'sqlite',
-            'database' => env('DB_DATABASE', base_path('database/database.sqlite')),
-            'prefix'   => env('DB_PREFIX', ''),
+            'database' => env('DB_SQLITE_DATABASE', base_path('database/database.sqlite')),
+            'prefix'   => env('DB_SQLITE_PREFIX', ''),
         ],
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('MYSQL_HOST', 'mysql'),
-            'port'      => env('MYSQL_PORT', 3306),
-            'database'  => env('MYSQL_DATABASE', 'test'),
-            'username'  => env('MYSQL_USER', 'root'),
-            'password'  => env('MYSQL_PASS', '123456'),
-            'charset'   => env('DB_CHARSET', 'utf8'),
-            'collation' => env('DB_COLLATION', 'utf8_unicode_ci'),
-            'prefix'    => env('DB_PREFIX', ''),
-            'timezone'  => env('DB_TIMEZONE', '-03:00'),
-            'strict'    => env('DB_STRICT_MODE', false),
+            'host'      => env('DB_MYSQL_HOST', 'mysql'),
+            'port'      => env('DB_MYSQL_PORT', 3306),
+            'database'  => env('DB_MYSQL_DATABASE', 'test'),
+            'username'  => env('DB_MYSQL_USER', 'test'),
+            'password'  => env('DB_MYSQL_PASS', 'TestPassWord1234'),
+            'charset'   => env('DB_MYSQL_CHARSET', 'utf8'),
+            'collation' => env('DB_MYSQL_COLLATION', 'utf8_unicode_ci'),
+            'prefix'    => env('DB_MYSQL_PREFIX', ''),
+            'timezone'  => env('DB_MYSQL_TIMEZONE', '-03:00'),
+            'strict'    => env('DB_MYSQL_STRICT_MODE', false),
         ],
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => env('DB_HOST', 'localhost'),
-            'port'     => env('DB_PORT', 5432),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset'  => env('DB_CHARSET', 'utf8'),
-            'prefix'   => env('DB_PREFIX', ''),
-            'schema'   => env('DB_SCHEMA', 'public'),
+            'host'     => env('DB_POSTGRES_HOST', 'postgresql'),
+            'port'     => env('DB_POSTGRES_PORT', 5432),
+            'database' => env('DB_POSTGRES_DATABASE', 'test'),
+            'username' => env('DB_POSTGRES_USERNAME', 'postgres'),
+            'password' => env('DB_POSTGRES_PASSWORD', 'TestPassWord1234'),
+            'charset'  => env('DB_POSTGRES_CHARSET', 'utf8'),
+            'prefix'   => env('DB_POSTGRES_PREFIX', ''),
+            'schema'   => env('DB_POSTGRES_SCHEMA', 'public'),
         ],
 
         'sqlsrv' => [
             'driver'   => 'sqlsrv',
-            'host'     => env('DB_SQLSRV_HOST', 'sqlsrv'),
+            'host'     => env('DB_SQLSRV_HOST', 'sqlserver'),
             'port'     => env('DB_SQLSRV_PORT', '1433'),
             'database' => env('DB_SQLSRV_DATABASE', 'master'),
             'username' => env('DB_SQLSRV_USERNAME', 'SA'),
@@ -91,7 +91,7 @@ return [
         'oracle' => [
             'driver'         => 'oracle',
             'tns'            => env('DB_ORACLE_TNS', ''),
-            'host'           => env('DB_ORACLE_HOST', 'oraclesrv'),
+            'host'           => env('DB_ORACLE_HOST', 'oracle'),
             'port'           => env('DB_ORACLE_PORT', '1521'),
             'database'       => env('DB_ORACLE_DATABASE', 'XE'),
             'username'       => env('DB_ORACLE_USERNAME', 'system'),
@@ -100,6 +100,17 @@ return [
             'prefix'         => env('DB_ORACLE_PREFIX', ''),
             'prefix_schema'  => env('DB_ORACLE_SCHEMA_PREFIX', ''),
             'server_version' => env('DB_ORACLE_SERVER_VERSION', '11g'),
+        ],
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'database' => env('DB_MONGO_DATABASE', 'test'),
+            'dsn' => env('DB_MONGO_DSN', 'mongodb://mongodb:27017'),
+            //'host' => env('DB_MONGO_HOST', 'mongo'),
+            //'port' => env('DB_MONGO_PORT', '27017'),
+            'options' => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
         ],
     ],
 
