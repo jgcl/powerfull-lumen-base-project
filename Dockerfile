@@ -1,4 +1,4 @@
-FROM jgcl88/alpine-php-nginx
+FROM jgcl88/alpine-nginx-php
 
 COPY ./application /app
 
