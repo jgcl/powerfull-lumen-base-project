@@ -11,7 +11,8 @@
         "yajra/laravel-oci8": "^5.5",
         "flipbox/lumen-generator": "^5.5",
         "darkaonline/swagger-lume": "5.5.*",
-        "jenssegers/mongodb": "^3.3"
+        "jenssegers/mongodb": "^3.3",
+        "barryvdh/laravel-cors": "^0.11.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

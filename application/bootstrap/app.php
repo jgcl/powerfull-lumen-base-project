@@ -1,5 +1,7 @@
 <?php
 
+ini_set('serialize_precision', -1);
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
@@ -25,7 +27,6 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
-$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -85,10 +86,23 @@ $app->configure('oracle');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// https://github.com/yajra/laravel-oci8
 $app->register(Yajra\Oci8\Oci8ServiceProvider::class); // oracle eloquent
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class); // artisan
+
+// https://github.com/flipboxstudio/lumen-generator
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// https://github.com/DarkaOnLine/SwaggerLume
 $app->register(\SwaggerLume\ServiceProvider::class);
 
+// https://github.com/barryvdh/laravel-cors
+$app->register(Barryvdh\Cors\ServiceProvider::class);
+
+// https://github.com/jenssegers/laravel-mongodb
+$app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
+
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------

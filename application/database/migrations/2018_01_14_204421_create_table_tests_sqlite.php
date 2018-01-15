@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestsTableSqlite extends Migration
+class CreateTableTestsSqlite extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTestsTableSqlite extends Migration
      */
     public function up()
     {
-        Schema::connection('sqlite')->create('tests', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->nullable();
-            $table->date('nasc')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::connection('sqlite')->hasTable('tests')) {
+            Schema::connection('sqlite')->create('tests', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->nullable();
+                $table->date('nasc')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

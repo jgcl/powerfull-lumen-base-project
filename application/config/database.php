@@ -53,7 +53,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_MYSQL_HOST', 'mysql'),
+            'host'      => env('DB_MYSQL_HOST', 'mysqlsrv'),
             'port'      => env('DB_MYSQL_PORT', 3306),
             'database'  => env('DB_MYSQL_DATABASE', 'test'),
             'username'  => env('DB_MYSQL_USER', 'test'),
@@ -67,7 +67,7 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => env('DB_POSTGRES_HOST', 'postgresql'),
+            'host'     => env('DB_POSTGRES_HOST', 'postgresqlsrv'),
             'port'     => env('DB_POSTGRES_PORT', 5432),
             'database' => env('DB_POSTGRES_DATABASE', 'test'),
             'username' => env('DB_POSTGRES_USERNAME', 'postgres'),
@@ -79,7 +79,7 @@ return [
 
         'sqlsrv' => [
             'driver'   => 'sqlsrv',
-            'host'     => env('DB_SQLSRV_HOST', 'sqlserver'),
+            'host'     => env('DB_SQLSRV_HOST', 'sqlserversrv'),
             'port'     => env('DB_SQLSRV_PORT', '1433'),
             'database' => env('DB_SQLSRV_DATABASE', 'master'),
             'username' => env('DB_SQLSRV_USERNAME', 'SA'),
@@ -91,7 +91,7 @@ return [
         'oracle' => [
             'driver'         => 'oracle',
             'tns'            => env('DB_ORACLE_TNS', ''),
-            'host'           => env('DB_ORACLE_HOST', 'oracle'),
+            'host'           => env('DB_ORACLE_HOST', 'oraclesrv'),
             'port'           => env('DB_ORACLE_PORT', '1521'),
             'database'       => env('DB_ORACLE_DATABASE', 'XE'),
             'username'       => env('DB_ORACLE_USERNAME', 'system'),
@@ -105,12 +105,12 @@ return [
         'mongodb' => [
             'driver'   => 'mongodb',
             'database' => env('DB_MONGO_DATABASE', 'test'),
-            'dsn' => env('DB_MONGO_DSN', 'mongodb://mongodb:27017'),
+            'dsn' => env('DB_MONGO_DSN', 'mongodb://mongosrv:27017'),
             //'host' => env('DB_MONGO_HOST', 'mongo'),
             //'port' => env('DB_MONGO_PORT', '27017'),
-            'options' => [
+            /*'options' => [
                 'database' => 'admin' // sets the authentication database required by mongo 3
-            ]
+            ]*/
         ],
     ],
 

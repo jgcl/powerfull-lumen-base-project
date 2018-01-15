@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  mysql:
-    container_name: mysql
+  mysqlsrv:
+    container_name: mysqlsrv
     image: mysql:5.7
     #volumes:
       #- ~/docker-volumes/mysql/:/var/lib/mysql
@@ -16,8 +16,8 @@ services:
       - "3306:3306"
     network_mode: "bridge"
 
-  sqlserver:
-    container_name: sqlserver
+  sqlserversrv:
+    container_name: sqlserversrv
     image: microsoft/mssql-server-linux:latest
     environment:
       - ACCEPT_EULA=Y
@@ -30,8 +30,8 @@ services:
       - "1433:1433"
     network_mode: "bridge"
 
-  oracle:
-    container_name: oracle
+  oraclesrv:
+    container_name: oraclesrv
     image: wnameless/oracle-xe-11g
     environment:
       - ORACLE_ALLOW_REMOTE=true
@@ -42,8 +42,8 @@ services:
       - "1521:1521"
     network_mode: "bridge"
 
-  postgresql:
-    container_name: postgresql
+  postgresqlsrv:
+    container_name: postgresqlsrv
     image: postgres:latest
     environment:
       - POSTGRES_USER=postgres
@@ -53,8 +53,8 @@ services:
       - "5432:5432"
     network_mode: "bridge"
 
-  mongo:
-    container_name: mongo
+  mongosrv:
+    container_name: mongosrv
     image: mongo:latest
     ports:
       - "27017:27017"
@@ -64,12 +64,18 @@ services:
     container_name: lumenapp
     image: jgcl88/alpine-nginx-php:latest
     command: ["sh", "-c", "composer install && php artisan migrate && /docker/start.sh"]
+    depends_on:
+      - mysqlsrv
+      - oraclesrv
+      - sqlserversrv
+      - postgresqlsrv
+      - mongosrv
     links:
-      - mysql
-      - sqlserver
-      - oracle
-      - postgresql
-      - mongo
+      - mysqlsrv
+      - sqlserversrv
+      - oraclesrv
+      - postgresqlsrv
+      - mongosrv
     volumes:
       - ./application:/app
     ports:
