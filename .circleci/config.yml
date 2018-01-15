@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    machine: true
+
+    steps:
+      - checkout
+
+      - run:
+          name: Docker Build
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker build -t jgcl88/lumen-base-project:ci-$TAG .
+
+      - run:
+          name: Docker Images
+          command: |
+            docker images
+
+      - run:
+          name: Docker Login
+          command: docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+
+      - run:
+          name: Docker send image to dockerhub
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker push jgcl88/lumen-base-project:ci-$TAG
+
+      - run:
+          name: Latest tag
+          command: |
+            TAG="${CIRCLE_BUILD_NUM}"
+            docker tag jgcl88/lumen-base-project:ci-$TAG jgcl88/lumen-base-project:latest-ci
+            docker tag jgcl88/lumen-base-project:ci-$TAG jgcl88/lumen-base-project:latest
+            docker push jgcl88/lumen-base-project:latest-ci
+            docker push jgcl88/lumen-base-project:latest
