@@ -1,5 +1,9 @@
 # Powerfull Lumen 5.5 base project for all databases
 
+The goal of this project is to make life easier for developers who use similar stacks and always start a project from scratch. Here the goal is to clone the repository, remove what it does not need, and quickly start a new project.
+
+The boring part has already been made. Enjoy!
+
 Simple Lumen 5.5 base project with:
 - Docker;
 - Alpine; 
