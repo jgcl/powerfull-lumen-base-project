@@ -30,18 +30,6 @@ services:
       - "1433:1433"
     network_mode: "bridge"
 
-  oraclesrv:
-    container_name: oraclesrv
-    image: wnameless/oracle-xe-11g
-    environment:
-      - ORACLE_ALLOW_REMOTE=true
-      - ORACLE_PASSWORD_VERIFY=false
-      - ORACLE_DISABLE_ASYNCH_IO=true
-      - ORACLE_ENABLE_XDB=false
-    ports:
-      - "1521:1521"
-    network_mode: "bridge"
-
   postgresqlsrv:
     container_name: postgresqlsrv
     image: postgres:latest
@@ -66,14 +54,12 @@ services:
     command: ["sh", "-c", "composer install && php artisan migrate && /docker/start.sh"]
     depends_on:
       - mysqlsrv
-      - oraclesrv
       - sqlserversrv
       - postgresqlsrv
       - mongosrv
     links:
       - mysqlsrv
       - sqlserversrv
-      - oraclesrv
       - postgresqlsrv
       - mongosrv
     volumes:

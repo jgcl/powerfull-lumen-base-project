@@ -62,7 +62,7 @@ services:
 
   lumenapp:
     container_name: lumenapp
-    image: jgcl88/lumen-base-project
+    image: jgcl88/alpine-nginx-php:oracle
     command: ["sh", "-c", "php artisan migrate && /docker/start.sh"]
     depends_on:
       - mysqlsrv
