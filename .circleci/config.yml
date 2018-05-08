@@ -1,7 +1,13 @@
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      services:
+        - docker
+
+    dependencies:
+      override:
+        - sudo pip install --upgrade docker-compose
 
     steps:
       - checkout
@@ -20,6 +26,10 @@ jobs:
       - run:
           name: Docker Login
           command: docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
+
+      - run:
+          name: Docker Compose Buidd
+          command: docker-compose build
 
       - run:
           name: Docker send image to dockerhub
