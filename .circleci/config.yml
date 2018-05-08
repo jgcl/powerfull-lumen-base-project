@@ -18,6 +18,10 @@ jobs:
             TAG="${CIRCLE_BUILD_NUM}"
             docker build -t jgcl88/lumen-base-project:ci-$TAG .
 
+      #- run:
+          #name: Docker Compose Build
+          #command: docker-compose build
+
       - run:
           name: Docker Images
           command: |
@@ -26,10 +30,6 @@ jobs:
       - run:
           name: Docker Login
           command: docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-
-      - run:
-          name: Docker Compose Buidd
-          command: docker-compose build
 
       - run:
           name: Docker send image to dockerhub
